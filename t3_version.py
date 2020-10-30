@@ -23,7 +23,8 @@ def t3ssl(host,port):
     try:
         logicSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # SSL wrap the socket
-        secureLogicSocket = context.wrap_socket(logicSocket, server_side=False, server_hostname=host)
+        secureLogicSocket = context.wrap_socket(logicSocket, server_side=False,
+                                                server_hostname=host)
         secureLogicSocket.connect((host, port))
         secureLogicSocket.send(msg.encode())
         data = secureLogicSocket.recv(1024)
