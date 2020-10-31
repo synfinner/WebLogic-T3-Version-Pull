@@ -2,6 +2,14 @@
 
 This script is designed to issue a T3 request to a WebLogic server in order to get the underlying version. I initially borrowed the test string from the nmap NSE script, see: https://svn.nmap.org/nmap/scripts/weblogic-t3-info.nse
 
+## What is T3?
+
+An author on Stackoverflow actually had a quite good description:
+
+> Weblogic's implementation of the RMI specification uses a proprietary protocol known as T3. You can think of T3 (and secure T3S) as a layer to expose/allow JNDI calls by clients.
+
+See: https://docs.oracle.com/cd/E24329_01/web.1211/e24389/rmi_t3.htm#WLRMI143
+
 ## Script Usage
 
 ```
