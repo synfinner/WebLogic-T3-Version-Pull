@@ -4,7 +4,7 @@ This script is designed to issue a T3 request to a WebLogic server in order to g
 
 ## What is T3?
 
-An author on Stackoverflow actually had a quite good description:
+An author [on Stackoverflow](https://stackoverflow.com/a/17551807) actually had a quite good description:
 
 > Weblogic's implementation of the RMI specification uses a proprietary protocol known as T3. You can think of T3 (and secure T3S) as a layer to expose/allow JNDI calls by clients.
 
