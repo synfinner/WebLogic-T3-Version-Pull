@@ -22,6 +22,7 @@ def t3ssl(host,port):
     msg = "t3s 12.1.2\nAS:2048\nHL:19\n\n"
     try:
         logicSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        logicSocket.settimeout(5) # 5 second timeout
         # SSL wrap the socket
         secureLogicSocket = context.wrap_socket(logicSocket, server_side=False,
                                                 server_hostname=host)
@@ -31,28 +32,29 @@ def t3ssl(host,port):
         print("HOST: ", host,"--",data.decode().rstrip())
         secureLogicSocket.close()
     except Exception as e:
-        print(e)
-        exit()
+        print("[+]Error: ",e)
+    return
 
 def t3(host,port):
     # construct TCP socket.
     logicSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+    logicSocket.settimeout(5) # 5 second timeout.
     try:
         logicSocket.connect((host,port))
     except Exception as e:
         print("[+]Error: ",e)
-        exit()
+        return
     # Send t3 request. 
     msg = "t3 12.1.2\nAS:2048\nHL:19\n\n"
     try:
         logicSocket.send(msg.encode())
     except Exception as e:
         print("[+]Error: ",e)
-        exit()
 
     data = logicSocket.recv(1024)
     print("HOST: ", host,"--",data.decode().rstrip())
     logicSocket.close()
+    return
     
 
 def main():
@@ -74,9 +76,9 @@ def main():
         network = ipaddress.ip_network(host)
         for ip in network:
             if args.secure:
-                t3ssl(ip,port)
+                t3ssl(str(ip),port)
             else:
-                t3(ip,port)
+                t3(str(ip),port)
     else:
         pass
     if args.secure:
