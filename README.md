@@ -14,14 +14,16 @@ See: https://docs.oracle.com/cd/E24329_01/web.1211/e24389/rmi_t3.htm#WLRMI143
 
 ```
 synbook-pro :: Python/WebLogic_T3_Version_Pull » ./t3_version.py -h
-usage: t3_version.py [-h] [-t TARGET] [-p PORT] [-s]
+usage: t3_version.py [-h] [-t TARGET] [-p PORT] [-s] [-r]
 
 optional arguments:
   -h, --help            show this help message and exit
   -t TARGET, --target TARGET
                         hotname/ip of target
   -p PORT, --port PORT  port to connect on
-  -s, --secure             negotiate over ssl/t3s
+  -s, --secure          negotiate over ssl/t3s
+  -r, --range           cidr addresses specified as target. Ex:
+                        192.168.10.0/24
 ```
 
 ## Features
@@ -42,4 +44,14 @@ HOST:  xxx.xxx.xxx.xx9 -- HELO:12.2.1.3.0.false
 ```
 synbook-pro :: Python/WebLogic_T3_Version_Pull » ./t3_version.py -t xxx.xxx.xxx.x4 -p 443 -s
 HOST:  xxx.xxx.xxx.x4 -- HELO:12.2.1.3.0
+```
+
+**Scanning a cidr:**
+
+```
+synbook-pro :: Python/WebLogic_T3_Version_Pull » ./t3_version.py -t xxx.xxx.xxx.0/24 --range -p 443 -s
+HOST:  xxx.xxx.xxx.x4 -- HELO:12.2.1.3.0
+...
+...
+...
 ```

@@ -9,7 +9,7 @@ import sys
 import socket
 import argparse
 import ssl
-
+import ipaddress
 
 def t3ssl(host,port):
 
@@ -65,9 +65,20 @@ def main():
     parser.add_argument("-s", "--secure",
                     help="negotiate over ssl/t3s",
                     action='store_true')
+    parser.add_argument("-r", "--range", action='store_true',
+                    help="cidr addresses specified as target. Ex: 192.168.10.0/24")
     args = parser.parse_args()
     host = args.target
     port = args.port
+    if args.range:
+        network = ipaddress.ip_network(host)
+        for ip in network:
+            if args.secure:
+                t3ssl(ip,port)
+            else:
+                t3(ip,port)
+    else:
+        pass
     if args.secure:
         t3ssl(host,port)
     else:
