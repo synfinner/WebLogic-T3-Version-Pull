@@ -21,7 +21,7 @@ optional arguments:
   -t TARGET, --target TARGET
                         hotname/ip of target
   -p PORT, --port PORT  port to connect on
-  -s, --ssl             negotiate over ssl/t3s
+  -s, --secure             negotiate over ssl/t3s
 ```
 
 ## Features

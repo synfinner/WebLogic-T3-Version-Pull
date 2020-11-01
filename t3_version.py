@@ -62,13 +62,13 @@ def main():
                     help="hotname/ip of target")
     parser.add_argument("-p", "--port", type=int,
                     help="port to connect on")
-    parser.add_argument("-s", "--ssl",
+    parser.add_argument("-s", "--secure",
                     help="negotiate over ssl/t3s",
                     action='store_true')
     args = parser.parse_args()
     host = args.target
     port = args.port
-    if args.ssl:
+    if args.secure:
         t3ssl(host,port)
     else:
         t3(host,port)
