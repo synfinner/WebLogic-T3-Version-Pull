@@ -50,6 +50,7 @@ def t3(host,port):
         logicSocket.send(msg.encode())
     except Exception as e:
         print("[+]Error: ",e)
+        return
 
     data = logicSocket.recv(1024)
     print("HOST: ", host,"--",data.decode().rstrip())
